@@ -1,16 +1,18 @@
+#include "get_next_line.h"
+
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t	strlen;
+	size_t	string_len;
 	size_t	i;
 	char	*substr;
 
 	if (s == NULL)
 		return (NULL);
-	strlen = ft_strlen(s);
-	if (start > strlen)
+	string_len = ft_strlen(s);
+	if (start > string_len)
 		return (ft_strdup(""));
-	if (start + len > strlen)
-		len = strlen - start;
+	if (start + len > string_len)
+		len = string_len - start;
 	substr = malloc((len + 1) * sizeof(char));
 	if (substr == NULL)
 		return (NULL);

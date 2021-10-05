@@ -6,7 +6,7 @@
 /*   By: lkrebs-l <lkrebs-l@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 13:50:54 by lkrebs-l          #+#    #+#             */
-/*   Updated: 2021/10/05 17:56:59 by lkrebs-l         ###   ########.fr       */
+/*   Updated: 2021/10/05 18:14:11 by lkrebs-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,10 @@
 int main (void)
 {
 	int fd;
-	char *string;
+	char *string = NULL;
 
 	fd = open("test.txt", O_RDONLY);
-	while(1)
-	{
-		if (!string)
-			break ;
-		string = get_next_line(fd);
-		printf("%s", string);
-	}
+	string = get_next_line(fd);
+	printf("%s", string);
 	return (0);
 }
