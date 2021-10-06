@@ -40,6 +40,8 @@ char	*get_line(int fd, char **buffer, char  *read_buffer)
 		*buffer = swap;
 		find_new_line = ft_strchr(*buffer, '\n');
 	}
+	if (*buffer)
+		swap = *buffer;
 	new_line_position = 0;
 	while (swap[new_line_position] != '\n')
 		new_line_position++;

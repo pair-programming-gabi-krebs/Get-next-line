@@ -13,7 +13,7 @@
 #ifndef GET_NEXT_LINE
 # define GET_NEXT_LINE
 # define MAX_FD 256
-# define BUFFER_SIZE 5
+/*# define BUFFER_SIZE 5*/
 # include <unistd.h>
 # include <stdlib.h>
 
