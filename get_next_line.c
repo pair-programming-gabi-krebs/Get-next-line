@@ -13,17 +13,12 @@
 #include "get_next_line.h"
 
 
-char	*format_line(char **buffer, char *swap)
+char	*format_line(char **buffer, char *swap, int i)
 {
-	char	*new_line_position;
 	char	*line_formated;
 
-	new_line_position = 0;
-	while (swap[new_line_position] != '\n')
-		new_line_posiiton++;
-	/*new_line_position = ft_strchr(*buffer, '\n');*/
-	*buffer = ft_substr(swap, new_line_position + 1, ft_strlen(swap));
-	swap[new_line_position] = '\0';
+	*buffer = ft_substr(swap, i + 1, ft_strlen(swap));
+	swap[i + 1] = '\0';
 	line_formated = swap;
 	return (line_formated);
 }
@@ -32,19 +27,23 @@ char	*get_line(int fd, char **buffer, char  *read_buffer)
 {
 	int		read_bytes;
 	char	*swap;
-	char	*aux;
+	char	*find_new_line;
+	int		new_line_position;
 
-	aux = ft_strchr(*buffer, '\n');
-	while (aux == NULL)
+	find_new_line = ft_strchr(*buffer, '\n');
+	while (find_new_line == NULL)
 	{
 		read_bytes = read(fd, read_buffer, BUFFER_SIZE);
 		if (read_bytes <= 0) //verificar retorno read_bytes == 0
 			return (NULL);
 		swap = ft_strjoin(*buffer, read_buffer);
 		*buffer = swap;
-		aux = ft_strchr(*buffer, '\n');
+		find_new_line = ft_strchr(*buffer, '\n');
 	}
-	return (format_line(buffer, swap));
+	new_line_position = 0;
+	while (swap[new_line_position] != '\n')
+		new_line_position++;
+	return (format_line(buffer, swap, new_line_position));
 // função do format line é enviar o aaaaa/nbb e guardar o bb dentro do buffer
 }
 
@@ -57,6 +56,8 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE == 0) //mais um ||
 		return (NULL);
+	if (!buffer[fd])
+			buffer[fd] = ft_strdup("");
 	read_buffer = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (!read_buffer)
 		return (NULL);
