@@ -11,11 +11,18 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
 
+void ft_free(char *ptr)
+{
+	free(ptr);
+	ptr = NULL;
+}
 
 char	*format_line(char **buffer, char *swap, int i)
 {
 	char	*line_formated;
+
 
 	*buffer = ft_substr(swap, i + 1, ft_strlen(swap));
 	swap[i + 1] = '\0';
@@ -34,19 +41,20 @@ char	*get_line(int fd, char **buffer, char  *read_buffer)
 	while (find_new_line == NULL)
 	{
 		read_bytes = read(fd, read_buffer, BUFFER_SIZE);
-		if (read_bytes <= 0) //verificar retorno read_bytes == 0
-			return (NULL);
+		if (read_bytes <= 0)
+			return (swap);
+		read_buffer[read_bytes] = '\0';
 		swap = ft_strjoin(*buffer, read_buffer);
+		ft_free(*buffer);
 		*buffer = swap;
 		find_new_line = ft_strchr(*buffer, '\n');
 	}
 	if (*buffer)
 		swap = *buffer;
 	new_line_position = 0;
-	while (swap[new_line_position] != '\n')
+	while (swap[new_line_position] != '\n') // nl = ft_strlen(swap)?
 		new_line_position++;
 	return (format_line(buffer, swap, new_line_position));
-// função do format line é enviar o aaaaa/nbb e guardar o bb dentro do buffer
 }
 
 
@@ -56,7 +64,7 @@ char	*get_next_line(int fd)
 	char		*read_buffer;
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE == 0) //mais um ||
+	if (fd < 0 || BUFFER_SIZE == 0 || fd > MAX_FD) //mais um ||
 		return (NULL);
 	if (!buffer[fd])
 			buffer[fd] = ft_strdup("");

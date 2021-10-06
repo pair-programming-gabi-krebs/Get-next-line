@@ -6,7 +6,7 @@
 /*   By: lkrebs-l <lkrebs-l@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 13:50:54 by lkrebs-l          #+#    #+#             */
-/*   Updated: 2021/10/06 14:05:46 by lkrebs-l         ###   ########.fr       */
+/*   Updated: 2021/10/06 15:37:48 by lkrebs-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int main (void)
 {
 	int fd;
 	char *string = NULL;
-	fd = open("test.txt", O_RDONLY);
+	fd = open("42_no_nl", O_RDONLY);
 	while (1)
 	{
 		string = get_next_line(fd);
