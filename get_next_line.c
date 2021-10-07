@@ -15,11 +15,8 @@
 
 void ft_free(char **ptr)
 {
-	if (*ptr != NULL)
-	{
-		free(*ptr);
-		ptr = NULL;
-	}
+	free(*ptr);
+	ptr = NULL;
 }
 
 char	*format_line(char **buffer, char *swap, int new_line_index)
