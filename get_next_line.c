@@ -19,14 +19,22 @@ void ft_free(char *ptr)
 	ptr = NULL;
 }
 
-char	*format_line(char **buffer, char *swap, int i)
+char	*format_line(char **buffer, char *swap, int new_line_index)
 {
 	char	*line_formated;
 
-
-	*buffer = ft_substr(swap, i + 1, ft_strlen(swap));
-	swap[i + 1] = '\0';
+	if (!buffer && !swap)
+		return (NULL);
+	if (new_line_index < 0)
+	{
+		line_formated = ft_strdup(swap);
+		//ft_free(swap);
+		return (line_formated);
+	}
+	*buffer = ft_substr(swap, new_line_index + 1, ft_strlen(swap));
+	swap[new_line_index + 1] = '\0';
 	line_formated = swap;
+	swap = NULL;
 	return (line_formated);
 }
 
@@ -37,20 +45,24 @@ char	*get_line(int fd, char **buffer, char  *read_buffer)
 	char	*find_new_line;
 	int		new_line_position;
 
+	swap = NULL;
 	find_new_line = ft_strchr(*buffer, '\n');
 	while (find_new_line == NULL)
 	{
 		read_bytes = read(fd, read_buffer, BUFFER_SIZE);
 		if (read_bytes <= 0)
-			return (swap);
+		{
+			new_line_position = -1;
+			return (format_line(buffer,swap, new_line_position));
+		}
 		read_buffer[read_bytes] = '\0';
 		swap = ft_strjoin(*buffer, read_buffer);
 		ft_free(*buffer);
 		*buffer = swap;
 		find_new_line = ft_strchr(*buffer, '\n');
 	}
-	if (*buffer)
-		swap = *buffer;
+	/*if (*buffer)
+		swap = *buffer;*/
 	new_line_position = 0;
 	while (swap[new_line_position] != '\n') // nl = ft_strlen(swap)?
 		new_line_position++;
@@ -64,7 +76,7 @@ char	*get_next_line(int fd)
 	char		*read_buffer;
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE == 0 || fd > MAX_FD) //mais um ||
+	if (fd < 0 || BUFFER_SIZE == 0 || fd > MAX_FD)
 		return (NULL);
 	if (!buffer[fd])
 			buffer[fd] = ft_strdup("");
@@ -72,5 +84,6 @@ char	*get_next_line(int fd)
 	if (!read_buffer)
 		return (NULL);
 	line = get_line(fd, &buffer[fd], read_buffer);
+	ft_free(read_buffer); // começou a passar em alguns testes.
 	return (line);
 }
