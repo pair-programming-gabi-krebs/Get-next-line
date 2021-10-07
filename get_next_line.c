@@ -24,7 +24,10 @@ char	*format_line(char **buffer, char *swap, int new_line_index)
 	char	*line_formated;
 
 	if (**buffer == 0 && !swap && new_line_index < 0)
+	{
+		ft_free(buffer);
 		return (NULL);
+	}
 	if (new_line_index < 0)
 	{
 		line_formated = ft_strdup(*buffer);
