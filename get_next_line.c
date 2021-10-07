@@ -15,8 +15,11 @@
 
 void ft_free(char **ptr)
 {
+	if (*ptr != NULL)
+	{
 		free(*ptr);
 		ptr = NULL;
+	}
 }
 
 char	*format_line(char **buffer, char *swap, int new_line_index)
@@ -25,13 +28,15 @@ char	*format_line(char **buffer, char *swap, int new_line_index)
 
 	if (**buffer == 0 && !swap && new_line_index < 0)
 	{
-		ft_free(buffer);
+		free(buffer);
+		*buffer = NULL;
 		return (NULL);
 	}
 	if (new_line_index < 0)
 	{
 		line_formated = ft_strdup(*buffer);
-		ft_free(buffer);
+		free(buffer);
+		*buffer = NULL;
 		return (line_formated);
 	}
 	*buffer = ft_substr(swap, new_line_index + 1, ft_strlen(swap));
