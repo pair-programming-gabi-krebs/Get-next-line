@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkrebs-l <lkrebs-l@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gcosta-d <gcosta-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 13:50:54 by lkrebs-l          #+#    #+#             */
-/*   Updated: 2021/10/06 15:37:48 by lkrebs-l         ###   ########.fr       */
+/*   Updated: 2021/10/07 18:02:05 by gcosta-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int main (void)
 {
 	int fd;
 	char *string = NULL;
-	fd = open("42_no_nl", O_RDONLY);
+	fd = open("empty", O_RDONLY);
 	while (1)
 	{
 		string = get_next_line(fd);
