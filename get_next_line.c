@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
 void ft_free(char **ptr)
 {
@@ -25,14 +24,14 @@ char	*format_line(char **buffer, char *swap, int new_line_index)
 
 	if (**buffer == 0 && !swap && new_line_index < 0)
 	{
-		free(buffer);
+		free(*buffer);
 		*buffer = NULL;
 		return (NULL);
 	}
 	if (new_line_index < 0)
 	{
 		line_formated = ft_strdup(*buffer);
-		free(buffer);
+		free(*buffer);
 		*buffer = NULL;
 		return (line_formated);
 	}
