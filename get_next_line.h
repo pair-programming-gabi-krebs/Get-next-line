@@ -5,13 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkrebs-l <lkrebs-l@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/05 14:05:33 by gcosta-d          #+#    #+#             */
-/*   Updated: 2021/10/05 17:52:445 by lkrebs-l         ###   ########.fr       */
+/*   Created: 2021/10/08 10:59:19 by lkrebs-l          #+#    #+#             */
+/*   Updated: 2021/10/08 11:01:16 by lkrebs-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE
-# define GET_NEXT_LINE
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 # define MAX_FD 256
 /*# define BUFFER_SIZE 5*/
 # include <unistd.h>

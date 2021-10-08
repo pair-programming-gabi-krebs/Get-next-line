@@ -1,34 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_.c                                   :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkrebs-l <lkrebs-l@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gcosta-d <gcosta-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/05 13:52:20 by gcosta-d          #+#    #+#             */
-/*   Updated: 2021/10/05 13:52:222 by lkrebs-l         ###   ########.fr       */
+/*   Created: 2021/10/07 21:14:42 by lkrebs-l          #+#    #+#             */
+/*   Updated: 2021/10/08 11:02:293 by gcosta-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
-void ft_free(char *ptr)
+void	ft_free(char **ptr)
 {
-	free(ptr);
-	ptr = NULL;
+	free(*ptr);
+	*ptr = NULL;
 }
 
 char	*format_line(char **buffer, char *swap, int new_line_index)
 {
 	char	*line_formated;
 
-	if (!buffer && !swap)
+	if (!**buffer && !swap && new_line_index < 0)
+	{
+		free(buffer);
+		*buffer = NULL;
 		return (NULL);
+	}
 	if (new_line_index < 0)
 	{
-		line_formated = ft_strdup(swap);
-		//ft_free(swap);
+		line_formated = ft_strdup(*buffer);
+		free(buffer);
+		*buffer = NULL;
 		return (line_formated);
 	}
 	*buffer = ft_substr(swap, new_line_index + 1, ft_strlen(swap));
@@ -38,7 +42,7 @@ char	*format_line(char **buffer, char *swap, int new_line_index)
 	return (line_formated);
 }
 
-char	*get_line(int fd, char **buffer, char  *read_buffer)
+char	*get_line(int fd, char **buffer, char *read_buffer)
 {
 	int		read_bytes;
 	char	*swap;
@@ -51,24 +55,19 @@ char	*get_line(int fd, char **buffer, char  *read_buffer)
 	{
 		read_bytes = read(fd, read_buffer, BUFFER_SIZE);
 		if (read_bytes <= 0)
-		{
-			new_line_position = -1;
-			return (format_line(buffer,swap, new_line_position));
-		}
+			return (format_line(buffer, swap, -1));
 		read_buffer[read_bytes] = '\0';
 		swap = ft_strjoin(*buffer, read_buffer);
-		ft_free(*buffer);
+		ft_free(buffer);
 		*buffer = swap;
 		find_new_line = ft_strchr(*buffer, '\n');
 	}
-	/*if (*buffer)
-		swap = *buffer;*/
+	swap = *buffer;
 	new_line_position = 0;
-	while (swap[new_line_position] != '\n') // nl = ft_strlen(swap)?
+	while (swap[new_line_position] != '\n')
 		new_line_position++;
 	return (format_line(buffer, swap, new_line_position));
 }
-
 
 char	*get_next_line(int fd)
 {
@@ -76,14 +75,13 @@ char	*get_next_line(int fd)
 	char		*read_buffer;
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE == 0 || fd > MAX_FD)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > MAX_FD)
 		return (NULL);
 	if (!buffer[fd])
-			buffer[fd] = ft_strdup("");
+		buffer[fd] = ft_strdup("");
 	read_buffer = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (!read_buffer)
 		return (NULL);
 	line = get_line(fd, &buffer[fd], read_buffer);
-	ft_free(read_buffer); // começou a passar em alguns testes.
-	return (line);
+	ft_free(&read_buffer);
 }
