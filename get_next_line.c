@@ -6,7 +6,7 @@
 /*   By: lkrebs-l <lkrebs-l@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 11:09:59 by lkrebs-l          #+#    #+#             */
-/*   Updated: 2021/10/08 11:19:02 by lkrebs-l         ###   ########.fr       */
+/*   Updated: 2021/10/08 16:11:30 by lkrebs-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,15 @@ char	*format_line(char **buffer, char *swap, int new_line_index)
 {
 	char	*line_formated;
 
-	if (!**buffer && !swap && new_line_index < 0)
-	{
-		free(*buffer);
-		*buffer = NULL;
-		return (NULL);
-	}
+
 	if (new_line_index < 0)
 	{
+		if (!**buffer && !swap)
+		{
+			free(*buffer)
+			*buffer = NULL;
+			return (NULL);
+		}
 		line_formated = ft_strdup(*buffer);
 		free(*buffer);
 		*buffer = NULL;
