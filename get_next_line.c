@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcosta-d <gcosta-d@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lkrebs-l <lkrebs-l@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/07 21:14:42 by lkrebs-l          #+#    #+#             */
-/*   Updated: 2021/10/08 11:02:293 by gcosta-d         ###   ########.fr       */
+/*   Created: 2021/10/08 11:09:59 by lkrebs-l          #+#    #+#             */
+/*   Updated: 2021/10/08 11:10:15 by lkrebs-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,5 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line = get_line(fd, &buffer[fd], read_buffer);
 	ft_free(&read_buffer);
+	return (line);
 }
