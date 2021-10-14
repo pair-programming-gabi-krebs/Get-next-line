@@ -22,7 +22,6 @@ char	*format_line(char **buffer, char *swap, int new_line_index)
 {
 	char	*line_formated;
 
-
 	if (new_line_index < 0)
 	{
 		if (!**buffer && !swap)
