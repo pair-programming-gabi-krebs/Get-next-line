@@ -1,4 +1,4 @@
-<div style="text-align:center">
+<div align="center">
 	<div style="margin-bottom:3%">
 		<a href="https://www.42sp.org.br/">
 			<img src="./.img/gnl.png" alt="get_nex_line logo"/>
@@ -62,18 +62,22 @@ The standard code already has the bonus part included, it was write considering 
 
 The collab:
 
-<div style="display:inline-block; margin-right:2%">
+<table>
+  <tr>
+      <td>
 	<a href="https://github.com/gabrielasertori">
 		<img src="https://avatars.githubusercontent.com/u/64798344?v=4" width="100px" alt="Gabi sertori avatar"/><br>
 		<sub><b>Gabi Sertori</b></sub>
 	</a>
-</div>
-<div style="display:inline-block">
-	<a href="https://github.com/KrebsCoder">
-		<img src="https://avatars.githubusercontent.com/u/69386576?v=4" width="100px" alt="Lucas krebs avatar"/><br>
-		<sub><b>Lucas Krebs</b></sub>
-	</a>
-</div>
+	</td>
+	<td>
+		<a href="https://github.com/KrebsCoder">
+			<img src="https://avatars.githubusercontent.com/u/69386576?v=4" width="100px" alt="Lucas krebs avatar"/><br>
+			<sub><b>Lucas Krebs</b></sub>
+		</a>
+	</td>
+	</tr>
+</table>
 
 ## 📮 Contact
 
