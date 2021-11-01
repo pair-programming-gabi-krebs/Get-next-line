@@ -6,7 +6,7 @@
 /*   By: lkrebs-l <lkrebs-l@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 18:33:55 by lkrebs-l          #+#    #+#             */
-/*   Updated: 2021/11/01 18:47:56 by lkrebs-l         ###   ########.fr       */
+/*   Updated: 2021/11/01 19:04:13 by lkrebs-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,15 @@
 int	main(void)
 {
 	int		fd;
+	int		fd1;
 	char	*line;
-
-	line = malloc(1 * sizeof(char));
+	char	*line1;
+	
 	fd = open("teste", O_RDONLY);
+	fd1 = open("teste2", O_RDONLY);
+	
 	while (line != NULL)
 	{
-		free(line);
 		line = get_next_line(fd);
 		printf("%s", line);
 	}
