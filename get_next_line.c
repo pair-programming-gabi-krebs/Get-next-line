@@ -6,7 +6,7 @@
 /*   By: lkrebs-l <lkrebs-l@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 11:09:59 by lkrebs-l          #+#    #+#             */
-/*   Updated: 2021/10/08 16:17:27 by lkrebs-l         ###   ########.fr       */
+/*   Updated: 2021/11/01 12:12:39 by lkrebs-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	ft_free(char **ptr)
 char	*format_line(char **buffer, char *swap, int new_line_index)
 {
 	char	*line_formated;
-
 
 	if (new_line_index < 0)
 	{
